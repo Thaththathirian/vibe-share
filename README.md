@@ -4,7 +4,7 @@ Vibe Share is a simple and elegant platform for sharing your vibes. Currently, i
 
 ## 🔗 Live Demo
 
-[Visit Vibe Share](https://vibe-share-ten.vercel.app/)
+[Visit Vibe Share](https://vibe-share-seven.vercel.app/)
 
 ## 📸 Screenshots
 
