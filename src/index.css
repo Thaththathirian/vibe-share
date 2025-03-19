@@ -85,6 +85,15 @@ ul {
 }
 
 /* Login page, Signup page & confirm password */
+.login, .signup {
+  background: url('assets/images/bg.jpg') fixed no-repeat center center;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
 .login,
 .signup,
 .change-password {
