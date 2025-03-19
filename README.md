@@ -8,7 +8,7 @@ Vibe Share is a simple and elegant platform for sharing your vibes. Currently, i
 
 ## 📸 Screenshots
 
-(./design/screenshot.png)
+![Screenshot](./design/screenshot.png)
 
 ## 🛠️ Technologies Used
 
