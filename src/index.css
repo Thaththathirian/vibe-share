@@ -1,0 +1,353 @@
+:root {
+  --color-1: #adb2d4;
+  --color-2: #c7d9dd;
+  --color-3: #d5e5d5;
+  --color-4: #eef1da;
+  --white: hsl(0, 0%, 100%);
+  --btn: #477edd;
+  --btn-hov: #1158d2;
+  --grd-1: linear-gradient(to right, #f3cc3f, #ff0000);
+  --grd-2: linear-gradient(to right, #d400c4, #00d0ff);
+  --btn-success: #7cc88a;
+  --btn-cancel: #ca4141;
+  --blue: #0159f3;
+
+  --dark-blue: hsl(233, 26%, 24%);
+  --lime-green: hsl(136, 65%, 51%);
+  --bright-cyan: hsl(192, 70%, 51%);
+
+  --grayish-blue: hsl(233, 8%, 62%);
+  --light-gr-blue: hsl(220, 16%, 96%);
+  --very-light-gr: hsl(0, 0%, 98%);
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+} */
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+  font-size: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+#root {
+  isolation: isolate;
+}
+button {
+  background: transparent;
+  border: transparent;
+  cursor: pointer;
+}
+input {
+  outline: none;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+ul {
+  list-style: none;
+}
+
+/* Login page, Signup page & confirm password */
+.login,
+.signup,
+.change-password {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+}
+.change-password{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+}
+.cp-modal-content {
+  border-radius: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.9);
+}
+.change-password form button:first-child {
+  background: var(--btn-success);
+}
+.change-password form button:last-child {
+  background: var(--btn-cancel);
+}
+.cp-modal-content form div {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+
+}
+.login form,
+.signup form,
+.change-password form {
+  display: grid;
+  width: 350px;
+  /* gap: 20px; */
+  padding: 10px 20px 20px;
+  background-color: var(--color-1);
+  border-radius: 20px;
+  box-shadow: 5px 5px 15px gray;
+}
+.login button,
+.signup button,
+.change-password button {
+  background-color: var(--btn);
+  padding:6px;
+  width: 100%;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.login button:hover,
+.signup button:hover,
+.change-password button:hover {
+  background-color: var(--btn-hov);
+}
+.login form h1,
+.signup form h1,
+.change-password form h1 {
+  text-align: center;
+  padding-bottom: 15px;
+  font-size: 1.6rem;
+}
+.login form p,
+.signup form p,
+.change-password form p {
+  margin-top: 15px;
+}
+.login form span,
+.signup form span,
+.change-password form span {
+  color: #d90202;
+  min-height: 25px;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  font-size: 0.9rem;
+}
+
+/* Navbar */
+.navbar {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  background-color: var(--color-1);
+}
+
+.navbar ul {
+  display: flex;
+  gap: 10px;
+}
+.navbar ul li,
+.navbar ul li .link {
+  color: #040404;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+.navbar ul li .link {
+  text-decoration: none;
+}
+.navbar ul li:hover {
+  background-color: var(--color-2);
+}
+/* Posts */
+.posts {
+  padding-left: 20px;
+  padding-right: 10px;
+  position: relative;
+  margin-bottom: 20px;
+}
+.posts h2 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  background: var(--grd-2);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2rem;
+}
+
+/* Create post */
+.posts .topic {
+  display: grid;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.posts .topic p {
+  padding-left: 5px;
+  padding-bottom: 10px;
+  color: var(--blue);
+}
+.posts .create-btn {
+  padding: 5px 10px;
+  background-color: var(--btn-success);
+  display: flex;
+  gap: 10px;
+  border-radius: 10px;
+  align-self: center;
+}
+.posts .post-btn {
+  background-color: var(--btn-success);
+  padding: 3px 12px;
+  border-radius: 20px;
+}
+.posts .cancel-btn {
+  background-color: var(--btn-cancel);
+  padding: 3px 12px;
+  border-radius: 20px;
+}
+.create-post {
+  margin-top: -18px;
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 20px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.create-post .buttons {
+  display: flex;
+  justify-content: space-around;
+}
+.create-post textarea {
+  height: 100px;
+  resize: none;
+  overflow-y: auto;
+  outline: none;
+  border-radius: 3px;
+}
+.create-post,
+.display-post .post {
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background-color: var(--color-2);
+}
+
+.posts .no-post>p {
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-top: -10px;
+}
+.posts .no-post .instructions {
+  background-color: var(--color-2);
+  max-width: 450px;
+  padding: 10px;
+  border-radius: 10px;
+}
+.posts .no-post .instructions p:first-child {
+  text-align: center;
+  padding-bottom: 5px;
+  font-size: 1.05rem;
+  color: var(--blue);
+}
+.posts .no-post .instructions p:last-child {
+  text-align: center;
+  margin: 5px 0;
+  font-size: 1.05rem;
+  color: var(--dark-blue);
+
+}
+.posts .no-post .instructions ul li {
+  text-indent: 30px;
+  line-height: 1.5rem;
+}
+.posts .no-post .instructions ul li::before {
+  content: "✔"; 
+  position: absolute;
+  left: 10px;
+  color: var(--blue); /* Blue color for check mark */
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+/* Display post */
+.display-post {
+  display: grid;
+  gap: 20px;
+}
+.display-post .post {
+  max-width: 350px;
+  padding: 10px;
+}
+.post .post-line-1 {
+  display: flex;
+  justify-content: space-between;
+}
+.post-line-1 div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.post-line-1 div button {
+  display: flex;
+  align-items: center;
+}
+.post-line-1 .lock-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  color: #040404;
+}
+.post-line-1 p {
+  display: flex;
+  gap: 8px;
+  color: var(--blue);
+}
+.post > p {
+  text-indent: 10px;
+  text-align: justify;
+  padding: 10px;
+}
+.post small {
+  display: flex;
+  flex-direction: row-reverse;
+  color: #5b5e63;
+}
