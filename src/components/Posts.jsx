@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { IoMdCreate } from "react-icons/io";
@@ -7,6 +7,8 @@ import { MdDelete } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
 import CryptoJS from "crypto-js";
 import { decryptLoggedInUser } from "../utils/utils";
+import useCurrentTime from "../hooks/useCurrentTime";
+import getTimeStamp from "../utils/getTimeStamp";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -17,6 +19,8 @@ const Posts = () => {
 
   const loggedInUser = decryptLoggedInUser();
   const navigate = useNavigate();
+  const currentTime = useCurrentTime();
+  const textAreaRef = useRef(null);  
 
   useEffect(() => {
     const encryptedPosts = localStorage.getItem("posts");
@@ -43,6 +47,12 @@ const Posts = () => {
       }
     }
   }, []);
+
+  useEffect(() => {
+    if (showCreatePost && textAreaRef.current) {
+      textAreaRef.current.focus();
+    }
+  }, [showCreatePost]);
 
   const savePostsToLocalStorage = (updatedPosts) => {
     try {
@@ -71,14 +81,10 @@ const Posts = () => {
       authorName: loggedInUser.username,
       authorEmail: loggedInUser.email,
       isPublic,
-      createdAt: new Date().toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
-      }),
+      createdAt: new Date().toISOString(),
     };
 
-    const updatedPosts = [...posts, newPostData];
+    const updatedPosts = [newPostData, ...posts];
     savePostsToLocalStorage(updatedPosts);
     setNewPost("");
     setShowCreatePost(false);
@@ -127,6 +133,7 @@ const Posts = () => {
           className="create-post"
         >
           <textarea
+            ref={textAreaRef}
             placeholder="Express your vibes..."
             value={newPost}
             onChange={(e) => setNewPost(e.target.value)}
@@ -188,7 +195,7 @@ const Posts = () => {
                   )}
                 </div>
                 <p>{post.content}</p>
-                <small>{post.createdAt}</small>
+                <small>{getTimeStamp(post.createdAt, currentTime)}</small>
               </div>
             ))
         ) : (

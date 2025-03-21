@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import bcrypt from "bcryptjs";
 import { useAuth } from "../hooks/useAuth";
+import { motion } from "framer-motion";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -32,31 +33,41 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
-      <form onSubmit={handleLogin}>
-        <h1>Login</h1>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <span>{error}</span>
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <span>{error}</span>
-        <button type="submit">Login</button>
-        <p>
-          Don't have an account? <Link to="/signup">Sign Up</Link>
-        </p>
-      </form>
-    </div>
+    <motion.div
+      initial={{ opacity: 0.95, y: 0 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0.8, y: 0 }}
+      transition={{ duration: 0.2 }}
+    >
+      <div className="login signup-login-cp">
+        <form onSubmit={handleLogin}>
+          <h1>Login</h1>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <span>{error}</span>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <span>{error}</span>
+          <button type="submit">Login</button>
+          <p>
+            Don't have an account?{" "}
+            <Link to="/signup" className="link">
+              Sign Up
+            </Link>
+          </p>
+        </form>
+      </div>
+    </motion.div>
   );
 };
 

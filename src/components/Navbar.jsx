@@ -24,8 +24,8 @@ const Navbar = () => {
         />
         <ul>
           <li>Home</li>
-          <li onClick={handleLogout}>Log out</li>
           <li onClick={() => setIsModalOpen(true)}>Change Password</li>
+          <li onClick={handleLogout}>Log out</li>
         </ul>
       </nav>
       {isModalOpen && <ChangePassword onClose={() => setIsModalOpen(false)} />}

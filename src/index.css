@@ -3,37 +3,28 @@
   --color-2: #c7d9dd;
   --color-3: #d5e5d5;
   --color-4: #eef1da;
+
   --white: hsl(0, 0%, 100%);
-  --btn: #477edd;
-  --btn-hov: #1158d2;
-  --grd-1: linear-gradient(to right, #f3cc3f, #ff0000);
-  --grd-2: linear-gradient(to right, #d400c4, #00d0ff);
+  --btn: rgb(91, 169, 208);
+  --btn-hov: rgb(35, 151, 209);
+  --grd-1: linear-gradient(to right, #d400c4, #00d0ff);
   --btn-success: #7cc88a;
+  --btn-success-hov: #4bd665;
   --btn-cancel: #ca4141;
+  --btn-cancel-hov: #cf2525;
   --blue: #0159f3;
-
   --dark-blue: hsl(233, 26%, 24%);
-  --lime-green: hsl(136, 65%, 51%);
-  --bright-cyan: hsl(192, 70%, 51%);
 
-  --grayish-blue: hsl(233, 8%, 62%);
-  --light-gr-blue: hsl(220, 16%, 96%);
-  --very-light-gr: hsl(0, 0%, 98%);
+  --modal-font1: rgba(255, 255, 255, 0.8);
+  --modal-font2: rgba(244, 235, 235, 0.9);
+  --btn-font1: rgba(65, 65, 65, 0.9);
+  --btn-font2: rgba(43, 42, 42, 0.8);
 }
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
-/* img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-} */
 
 input,
 button,
@@ -79,41 +70,71 @@ input {
   padding: 8px;
   border-radius: 10px;
   border: 1px solid gray;
+  font-size: 0.9rem;
 }
 ul {
   list-style: none;
 }
 
 /* Login page, Signup page & confirm password */
-.login, .signup {
-  background: url('/assets/images/bg.jpg') fixed no-repeat center center;
+.login,
+.signup {
+  background: url("/assets/images/desktop-bg.jpg") fixed no-repeat center center;
   background-size: cover;
   height: 100vh;
   width: 100vw;
   position: fixed;
   top: 0;
   left: 0;
+  color: var(--modal-font1);
+  transition: background-image 0.5s ease-in-out;
 }
-.login,
-.signup,
-.change-password {
+.signup-login-cp {
   display: grid;
   justify-content: center;
   align-content: center;
   height: 100vh;
 }
-.change-password{
+.change-password {
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+  backdrop-filter: blur(10px); /* Background blur */
   z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--modal-font2);
 }
 .cp-modal-content {
+  background: rgba(255, 255, 255, 0.12); /* Glass effect */
   border-radius: 20px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(15px); /* Stronger blur */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2),
+    /* Depth shadow */ inset 3px 3px 8px rgba(255, 255, 255, 0.1),
+    /* Soft highlight */ inset -3px -3px 8px rgba(0, 0, 0, 0.1); /* Subtle depth */
+
+  /* Glass border */
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top: 2px solid rgba(255, 255, 255, 0.4);
+  border-right: 2px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+
+  transition: all 0.3s ease-in-out;
+}
+
+/* Enhance glass effect on hover */
+.cp-modal-content:hover {
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(20px);
+}
+.change-password form button {
+  color: var(--btn-font1);
+  border: none;
 }
 .change-password form button:first-child {
   background: var(--btn-success);
@@ -121,53 +142,74 @@ ul {
 .change-password form button:last-child {
   background: var(--btn-cancel);
 }
+.change-password form button:first-child:hover {
+  background: var(--btn-success-hov);
+}
+.change-password form button:last-child:hover {
+  background: var(--btn-cancel-hov);
+}
 .cp-modal-content form div {
   display: flex;
   gap: 20px;
   justify-content: space-between;
-
 }
-.login form,
-.signup form,
-.change-password form {
+.signup-login-cp form {
   display: grid;
   width: 350px;
-  /* gap: 20px; */
-  padding: 10px 20px 20px;
-  background-color: var(--color-1);
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.12); /* More transparent for glass effect */
   border-radius: 20px;
-  box-shadow: 5px 5px 15px gray;
+  backdrop-filter: blur(10px); /* Stronger blur for depth */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2),
+    /* Depth shadow */ inset 3px 3px 8px rgba(255, 255, 255, 0.1),
+    /* Soft highlight */ inset -3px -3px 8px rgba(0, 0, 0, 0.1); /* Subtle depth */
+
+  /* Border with emphasis on top and left */
+  border: 2px solid rgba(255, 255, 255, 0.4); /* More defined glass border */
+  border-top: 2px solid rgba(255, 255, 255, 0.4); /* Stronger highlight at the top */
+  border-right: 2px solid rgba(255, 255, 255, 0.4); /* Subtler right border */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Subtler bottom border */
+  border-left: 1px solid rgba(255, 255, 255, 0.3); /* Stronger left border for light reflection */
+
+  transition: all 0.3s ease-in-out;
 }
-.login button,
-.signup button,
-.change-password button {
+
+.signup-login-cp form:hover {
+  background: rgba(255, 255, 255, 0.14); /* Slightly more opaque on hover */
+  backdrop-filter: blur(15px);
+}
+
+.signup-login-cp button {
   background-color: var(--btn);
-  padding:6px;
+  color: var(--btn-font2);
+  border: 1px solid rgb(94, 96, 97);
+  padding: 6px;
   width: 100%;
   border-radius: 20px;
   font-weight: bold;
 }
 
-.login button:hover,
-.signup button:hover,
-.change-password button:hover {
+.signup-login-cp button:hover {
   background-color: var(--btn-hov);
 }
-.login form h1,
-.signup form h1,
-.change-password form h1 {
+.signup-login-cp form h1 {
   text-align: center;
   padding-bottom: 15px;
   font-size: 1.6rem;
 }
-.login form p,
-.signup form p,
-.change-password form p {
+.signup-login-cp form p {
   margin-top: 15px;
 }
-.login form span,
-.signup form span,
-.change-password form span {
+.signup-login-cp form p .link {
+  text-decoration: none;
+  color: var(--btn);
+  font-size: 0.93rem;
+  font-weight: 600;
+}
+.signup-login-cp form p .link:hover {
+  color: var(--btn-hov);
+}
+.signup-login-cp form span {
   color: #d90202;
   min-height: 25px;
   display: flex;
@@ -213,7 +255,7 @@ ul {
 .posts h2 {
   padding-top: 10px;
   padding-bottom: 5px;
-  background: var(--grd-2);
+  background: var(--grd-1);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -224,7 +266,7 @@ ul {
 .posts .topic {
   display: grid;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 .posts .topic p {
   padding-left: 5px;
@@ -233,16 +275,26 @@ ul {
 }
 .posts .create-btn {
   padding: 5px 10px;
+  /* background-color: var(--btn-success); */
   background-color: var(--btn-success);
   display: flex;
   gap: 10px;
   border-radius: 10px;
   align-self: center;
 }
+.posts .create-btn:hover,
+.posts .post-btn:hover {
+  background-color: var(--btn-success-hov);
+  transform: scale(1.05);
+}
 .posts .post-btn {
   background-color: var(--btn-success);
   padding: 3px 12px;
   border-radius: 20px;
+}
+.posts .cancel-btn:hover {
+  background-color: var(--btn-cancel-hov);
+  transform: scale(1.05);
 }
 .posts .cancel-btn {
   background-color: var(--btn-cancel);
@@ -280,7 +332,7 @@ ul {
   background-color: var(--color-2);
 }
 
-.posts .no-post>p {
+.posts .no-post > p {
   margin-bottom: 10px;
   margin-left: 5px;
   margin-top: -10px;
@@ -302,14 +354,13 @@ ul {
   margin: 5px 0;
   font-size: 1.05rem;
   color: var(--dark-blue);
-
 }
 .posts .no-post .instructions ul li {
   text-indent: 30px;
   line-height: 1.5rem;
 }
 .posts .no-post .instructions ul li::before {
-  content: "✔"; 
+  content: "✔";
   position: absolute;
   left: 10px;
   color: var(--blue); /* Blue color for check mark */
@@ -359,4 +410,89 @@ ul {
   display: flex;
   flex-direction: row-reverse;
   color: #5b5e63;
+  margin-right: 5px;
+  font-size: 0.8rem;
+}
+
+/* smaller devices 768px or less */
+@media screen and (max-width: 768px) {
+  /* posts */
+  .posts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    width: 100%;
+    margin: auto;
+    margin-bottom: 20px;
+    /* padding: 10px; */
+  }
+  .posts h2 {
+    font-size: 1.9rem;
+  }
+  .create-post {
+    width: 90%;
+    max-width: 90%;
+  }
+  .display-post {
+    width: 90%;
+    max-width: 90%;
+    /* justify-self: center; */
+  }
+  .display-post .post {
+    max-width: 100%;
+    /* padding: 0; */
+  }
+
+  /* Navbar */
+  .navbar {
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: var(--color-1);
+  }
+  .navbar ul {
+    gap: 5px;
+  }
+  .navbar ul li,
+  .navbar ul li .link {
+    padding: 5px 8px;
+    font-size: 0.9rem;
+  }
+  .posts .topic p {
+    padding-left: 0;
+    text-align: center;
+  }
+  .post small {
+    font-size: 0.7rem;
+  }
+
+  /* Login page, Signup page & confirm password */
+  .login,
+  .signup {
+    background: url("/assets/images/small-screen-bg.jpg") fixed no-repeat center
+      center;
+    background-size: cover;
+  }
+
+  .signup-login-cp button {
+    border: 1px solid rgb(186, 191, 194);
+  }
+
+  .signup-login-cp form p .link {
+    --btn: rgb(64, 121, 149);
+  }
+  .change-password form p .link {
+    --btn: rgb(61, 75, 87);
+  }
+  .change-password form p .link:hover {
+    --btn-hov: rgb(7, 79, 142);
+  }
+
+  .signup-login-cp button:hover {
+    background-color: var(--btn-hov);
+  }
+  .signup-login-cp form h1 {
+    font-size: 1.5rem;
+  }
 }

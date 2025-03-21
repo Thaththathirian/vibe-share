@@ -1,5 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useState } from "react";
+import {  Route, Routes, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
@@ -9,39 +9,40 @@ import { AuthProvider } from "./hooks/useAuth";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
+  const location = useLocation();
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route
-            path="/change-password"
-            element={
-              <ProtectedRoute>
-                <ChangePassword />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/posts"
-            element={
-              <ProtectedRoute>
-                <Posts />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="*" element={<Login />} />
-        </Routes>
-      </BrowserRouter>
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route
+              path="/change-password"
+              element={
+                <ProtectedRoute>
+                  <ChangePassword />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/posts"
+              element={
+                <ProtectedRoute>
+                  <Posts />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="*" element={<Login />} />
+          </Routes>
+        </AnimatePresence>
     </AuthProvider>
   );
 }
